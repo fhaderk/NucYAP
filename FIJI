@@ -1,0 +1,38 @@
+title = getTitle();
+run("8-bit");
+//
+run("Split Channels");
+//
+run("Set Measurements...", "area mean integrated display redirect=None decimal=3");
+//
+	bigChannel = 1;  //cells
+	smallChannel = 3;   //nuclei
+//
+	bigObject = "Whole Cell";
+	smallObject = "Nuclei";
+// 
+	selectImage("C" + bigChannel + "-" + title);
+	bigImage = getImageID();
+	selectImage("C" + smallChannel + "-" + title);
+	smallImage = getImageID();
+//
+	selectImage(smallImage);
+//
+	run("Gaussian Blur...", "sigma=2");
+	setAutoThreshold("Otsu dark");
+//
+	run("Convert to Mask", "method=Otsu background=Dark");
+	run("Fill Holes"); 
+	run("Despeckle");
+//
+	run("Select All"); 
+	run("Analyze Particles...", "size=35-Infinity display exclude add");
+	roiManager("Show All with labels");
+	close();  
+	selectImage(bigImage);
+	roiManager("Measure");
+	roiManager("Show All");
+//	
+	roiManager("Delete");
+//
+	saveAs("Results", "/Users/... .csv");
