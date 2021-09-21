@@ -5,8 +5,8 @@ run("Split Channels");
 //
 run("Set Measurements...", "area mean integrated display redirect=None decimal=3");
 //
-	bigChannel = 1;  //cells
-	smallChannel = 3;   //nuclei
+	bigChannel = 1;  //cells - adapt channel ID as needed
+	smallChannel = 3;   //nuclei - adapt channel ID as needed
 //
 	bigObject = "Whole Cell";
 	smallObject = "Nuclei";
@@ -35,4 +35,4 @@ run("Set Measurements...", "area mean integrated display redirect=None decimal=3
 //	
 	roiManager("Delete");
 //
-	saveAs("Results", "/Users/... .csv");
+	saveAs("Results", "/Users/... .csv");  //adapt directory as needed
